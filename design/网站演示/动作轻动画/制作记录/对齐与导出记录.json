@@ -1,0 +1,963 @@
+[
+  {
+    "id": "01",
+    "key": "welcome",
+    "name": "欢迎",
+    "description": "招招手，和你打个招呼",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "01_欢迎_六帧.png",
+    "webp": "网页动画/welcome.webp",
+    "apng": "网页动画/welcome.apng",
+    "poster": "静态首帧/welcome.png",
+    "video": "视频预览/welcome.mp4",
+    "alignment": [
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 106,
+        "right": 471,
+        "anchor": 275.4166666666667,
+        "scale": 0.9375,
+        "tx": -2.203125,
+        "ty": 22.75
+      },
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 69,
+        "right": 439,
+        "anchor": 243.36666666666667,
+        "scale": 0.9375,
+        "tx": 27.84375,
+        "ty": 22.75
+      },
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 35,
+        "right": 407,
+        "anchor": 211.44444444444446,
+        "scale": 0.9375,
+        "tx": 57.770833333333314,
+        "ty": 22.75
+      },
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 106,
+        "right": 471,
+        "anchor": 275.1777777777778,
+        "scale": 0.9375,
+        "tx": -1.9791666666666856,
+        "ty": 22.75
+      },
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 80,
+        "right": 439,
+        "anchor": 243.09444444444443,
+        "scale": 0.9375,
+        "tx": 28.098958333333343,
+        "ty": 22.75
+      },
+      {
+        "top": 12,
+        "bottom": 492,
+        "left": 42,
+        "right": 407,
+        "anchor": 211.1888888888889,
+        "scale": 0.9375,
+        "tx": 58.01041666666666,
+        "ty": 22.75
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "02",
+    "key": "mentor",
+    "name": "找导师",
+    "description": "指向导师名片，介绍科研伙伴",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3220,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 1900
+      },
+      {
+        "frame": 4,
+        "durationMs": 220
+      },
+      {
+        "frame": 2,
+        "durationMs": 240
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 2,
+        "durationMs": 200
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 0,
+        "durationMs": 300
+      }
+    ],
+    "source": "02_找导师_六帧.png",
+    "webp": "网页动画/mentor.webp",
+    "apng": "网页动画/mentor.apng",
+    "poster": "静态首帧/mentor.png",
+    "video": "视频预览/mentor.mp4",
+    "alignment": [
+      {
+        "top": 9,
+        "bottom": 503,
+        "left": 27,
+        "right": 464,
+        "anchor": 221.6611111111111,
+        "scale": 0.9109311740890689,
+        "tx": 54.08198380566802,
+        "ty": 25.80161943319837
+      },
+      {
+        "top": 9,
+        "bottom": 503,
+        "left": 44,
+        "right": 485,
+        "anchor": 239.13888888888889,
+        "scale": 0.9109311740890689,
+        "tx": 38.16093117408906,
+        "ty": 25.80161943319837
+      },
+      {
+        "top": 10,
+        "bottom": 503,
+        "left": 58,
+        "right": 496,
+        "anchor": 253.2888888888889,
+        "scale": 0.9127789046653144,
+        "tx": 24.80324543610547,
+        "ty": 24.872210953346837
+      },
+      {
+        "top": 8,
+        "bottom": 502,
+        "left": 23,
+        "right": 474,
+        "anchor": 223.21666666666667,
+        "scale": 0.9109311740890689,
+        "tx": 52.66497975708501,
+        "ty": 26.712550607287426
+      },
+      {
+        "top": 9,
+        "bottom": 504,
+        "left": 42,
+        "right": 484,
+        "anchor": 238.96666666666667,
+        "scale": 0.9090909090909091,
+        "tx": 38.75757575757575,
+        "ty": 25.818181818181813
+      },
+      {
+        "top": 7,
+        "bottom": 502,
+        "left": 49,
+        "right": 499,
+        "anchor": 249.67777777777778,
+        "scale": 0.9090909090909091,
+        "tx": 29.02020202020202,
+        "ty": 27.636363636363626
+      }
+    ],
+    "excludedFrames": [
+      1
+    ]
+  },
+  {
+    "id": "03",
+    "key": "project",
+    "name": "找项目",
+    "description": "轻点项目清单，确认探索方向",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "03_找项目_六帧.png",
+    "webp": "网页动画/project.webp",
+    "apng": "网页动画/project.apng",
+    "poster": "静态首帧/project.png",
+    "video": "视频预览/project.mp4",
+    "alignment": [
+      {
+        "top": 12,
+        "bottom": 499,
+        "left": 97,
+        "right": 472,
+        "anchor": 265.84444444444443,
+        "scale": 0.9240246406570842,
+        "tx": 10.353182751540032,
+        "ty": 22.911704312114978
+      },
+      {
+        "top": 12,
+        "bottom": 499,
+        "left": 72,
+        "right": 450,
+        "anchor": 241.3111111111111,
+        "scale": 0.9240246406570842,
+        "tx": 33.022587268993846,
+        "ty": 22.911704312114978
+      },
+      {
+        "top": 11,
+        "bottom": 499,
+        "left": 73,
+        "right": 455,
+        "anchor": 244.30555555555554,
+        "scale": 0.9221311475409836,
+        "tx": 30.71823770491804,
+        "ty": 23.85655737704917
+      },
+      {
+        "top": 7,
+        "bottom": 492,
+        "left": 97,
+        "right": 476,
+        "anchor": 267.6777777777778,
+        "scale": 0.9278350515463918,
+        "tx": 7.639175257731921,
+        "ty": 27.50515463917526
+      },
+      {
+        "top": 6,
+        "bottom": 493,
+        "left": 72,
+        "right": 454,
+        "anchor": 243.2888888888889,
+        "scale": 0.9240246406570842,
+        "tx": 31.195071868583142,
+        "ty": 28.45585215605746
+      },
+      {
+        "top": 6,
+        "bottom": 494,
+        "left": 73,
+        "right": 455,
+        "anchor": 246.0888888888889,
+        "scale": 0.9221311475409836,
+        "tx": 29.073770491803288,
+        "ty": 28.467213114754088
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "04",
+    "key": "resources",
+    "name": "找资源",
+    "description": "读一会儿书，让书页轻轻动起来",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3000,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 240
+      },
+      {
+        "frame": 2,
+        "durationMs": 100
+      },
+      {
+        "frame": 3,
+        "durationMs": 100
+      },
+      {
+        "frame": 4,
+        "durationMs": 200
+      },
+      {
+        "frame": 0,
+        "durationMs": 360
+      }
+    ],
+    "source": "04_找资源_六帧.png",
+    "webp": "网页动画/resources.webp",
+    "apng": "网页动画/resources.apng",
+    "poster": "静态首帧/resources.png",
+    "video": "视频预览/resources.mp4",
+    "alignment": [
+      {
+        "top": 17,
+        "bottom": 498,
+        "left": 78,
+        "right": 480,
+        "anchor": 261.09444444444443,
+        "scale": 0.9355509355509356,
+        "tx": 11.732848232848227,
+        "ty": 18.095634095634068
+      },
+      {
+        "top": 17,
+        "bottom": 498,
+        "left": 58,
+        "right": 474,
+        "anchor": 246.38888888888889,
+        "scale": 0.9355509355509356,
+        "tx": 25.490644490644485,
+        "ty": 18.095634095634068
+      },
+      {
+        "top": 17,
+        "bottom": 498,
+        "left": 74,
+        "right": 480,
+        "anchor": 258.0833333333333,
+        "scale": 0.9355509355509356,
+        "tx": 14.549896049896063,
+        "ty": 18.095634095634068
+      },
+      {
+        "top": 14,
+        "bottom": 497,
+        "left": 74,
+        "right": 488,
+        "anchor": 262.5888888888889,
+        "scale": 0.9316770186335404,
+        "tx": 11.351966873706004,
+        "ty": 20.956521739130437
+      },
+      {
+        "top": 15,
+        "bottom": 497,
+        "left": 59,
+        "right": 474,
+        "anchor": 244.42222222222222,
+        "scale": 0.9336099585062241,
+        "tx": 27.804979253112037,
+        "ty": 19.995850622406635
+      },
+      {
+        "top": 15,
+        "bottom": 497,
+        "left": 64,
+        "right": 480,
+        "anchor": 249.34444444444443,
+        "scale": 0.9336099585062241,
+        "tx": 23.20954356846474,
+        "ty": 19.995850622406635
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "05",
+    "key": "results",
+    "name": "看成果",
+    "description": "举起小手，为进展喝彩",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 200
+      },
+      {
+        "frame": 3,
+        "durationMs": 240
+      },
+      {
+        "frame": 4,
+        "durationMs": 200
+      },
+      {
+        "frame": 0,
+        "durationMs": 280
+      }
+    ],
+    "source": "05_看成果_六帧.png",
+    "webp": "网页动画/results.webp",
+    "apng": "网页动画/results.apng",
+    "poster": "静态首帧/results.png",
+    "video": "视频预览/results.mp4",
+    "alignment": [
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 31,
+        "right": 462,
+        "anchor": 252.7111111111111,
+        "scale": 0.9336099585062241,
+        "tx": 20.066390041493776,
+        "ty": 26.531120331950206
+      },
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 32,
+        "right": 463,
+        "anchor": 253.46666666666667,
+        "scale": 0.9336099585062241,
+        "tx": 19.360995850622402,
+        "ty": 26.531120331950206
+      },
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 32,
+        "right": 463,
+        "anchor": 253.67777777777778,
+        "scale": 0.9336099585062241,
+        "tx": 19.163900414937757,
+        "ty": 26.531120331950206
+      },
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 31,
+        "right": 463,
+        "anchor": 253.16666666666666,
+        "scale": 0.9336099585062241,
+        "tx": 19.64107883817428,
+        "ty": 26.531120331950206
+      },
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 32,
+        "right": 462,
+        "anchor": 252.26111111111112,
+        "scale": 0.9336099585062241,
+        "tx": 20.48651452282155,
+        "ty": 26.531120331950206
+      },
+      {
+        "top": 8,
+        "bottom": 490,
+        "left": 31,
+        "right": 462,
+        "anchor": 252.26666666666668,
+        "scale": 0.9336099585062241,
+        "tx": 20.48132780082986,
+        "ty": 26.531120331950206
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "06",
+    "key": "notice",
+    "name": "看通知",
+    "description": "拿起小喇叭，提醒新消息",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "06_看通知_六帧.png",
+    "webp": "网页动画/notice.webp",
+    "apng": "网页动画/notice.apng",
+    "poster": "静态首帧/notice.png",
+    "video": "视频预览/notice.mp4",
+    "alignment": [
+      {
+        "top": 9,
+        "bottom": 492,
+        "left": 92,
+        "right": 467,
+        "anchor": 260.9555555555556,
+        "scale": 0.9316770186335404,
+        "tx": 12.873706004140757,
+        "ty": 25.614906832298118
+      },
+      {
+        "top": 9,
+        "bottom": 492,
+        "left": 80,
+        "right": 455,
+        "anchor": 248.50555555555556,
+        "scale": 0.9316770186335404,
+        "tx": 24.473084886128362,
+        "ty": 25.614906832298118
+      },
+      {
+        "top": 9,
+        "bottom": 492,
+        "left": 66,
+        "right": 441,
+        "anchor": 234.24444444444444,
+        "scale": 0.9316770186335404,
+        "tx": 37.75983436853002,
+        "ty": 25.614906832298118
+      },
+      {
+        "top": 10,
+        "bottom": 493,
+        "left": 93,
+        "right": 470,
+        "anchor": 262.85555555555555,
+        "scale": 0.9316770186335404,
+        "tx": 11.103519668737079,
+        "ty": 24.683229813664582
+      },
+      {
+        "top": 10,
+        "bottom": 493,
+        "left": 78,
+        "right": 455,
+        "anchor": 247.6888888888889,
+        "scale": 0.9316770186335404,
+        "tx": 25.23395445134574,
+        "ty": 24.683229813664582
+      },
+      {
+        "top": 10,
+        "bottom": 493,
+        "left": 63,
+        "right": 441,
+        "anchor": 233.54444444444445,
+        "scale": 0.9316770186335404,
+        "tx": 38.41200828157349,
+        "ty": 24.683229813664582
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "07",
+    "key": "lecture",
+    "name": "听讲座",
+    "description": "落笔、抬笔，认真记下新想法",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "07_听讲座_六帧.png",
+    "webp": "网页动画/lecture.webp",
+    "apng": "网页动画/lecture.apng",
+    "poster": "静态首帧/lecture.png",
+    "video": "视频预览/lecture.mp4",
+    "alignment": [
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.23333333333332,
+        "scale": 0.9453781512605042,
+        "tx": 14.707983193277329,
+        "ty": 20.764705882352928
+      },
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.4777777777778,
+        "scale": 0.9453781512605042,
+        "tx": 14.47689075630251,
+        "ty": 20.764705882352928
+      },
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.32777777777778,
+        "scale": 0.9453781512605042,
+        "tx": 14.618697478991606,
+        "ty": 20.764705882352928
+      },
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.39444444444445,
+        "scale": 0.9453781512605042,
+        "tx": 14.555672268907557,
+        "ty": 20.764705882352928
+      },
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.48333333333332,
+        "scale": 0.9453781512605042,
+        "tx": 14.471638655462215,
+        "ty": 20.764705882352928
+      },
+      {
+        "top": 14,
+        "bottom": 490,
+        "left": 88,
+        "right": 461,
+        "anchor": 255.4388888888889,
+        "scale": 0.9453781512605042,
+        "tx": 14.513655462184886,
+        "ty": 20.764705882352928
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "08",
+    "key": "team",
+    "name": "组队招募",
+    "description": "张开双臂，邀请伙伴一起探索",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3340,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 1800
+      },
+      {
+        "frame": 1,
+        "durationMs": 200
+      },
+      {
+        "frame": 2,
+        "durationMs": 220
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 400
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 1,
+        "durationMs": 220
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "08_组队招募_六帧.png",
+    "webp": "网页动画/team.webp",
+    "apng": "网页动画/team.apng",
+    "poster": "静态首帧/team.png",
+    "video": "视频预览/team.mp4",
+    "alignment": [
+      {
+        "top": 19,
+        "bottom": 493,
+        "left": 79,
+        "right": 460,
+        "anchor": 268.81111111111113,
+        "scale": 0.9493670886075949,
+        "tx": 0.7995780590717345,
+        "ty": 15.962025316455708
+      },
+      {
+        "top": 19,
+        "bottom": 493,
+        "left": 62,
+        "right": 443,
+        "anchor": 251.76111111111112,
+        "scale": 0.9493670886075949,
+        "tx": 16.98628691983123,
+        "ty": 15.962025316455708
+      },
+      {
+        "top": 19,
+        "bottom": 493,
+        "left": 63,
+        "right": 444,
+        "anchor": 253.71666666666667,
+        "scale": 0.9493670886075949,
+        "tx": 15.129746835443058,
+        "ty": 15.962025316455708
+      },
+      {
+        "top": 18,
+        "bottom": 493,
+        "left": 72,
+        "right": 466,
+        "anchor": 268.72222222222223,
+        "scale": 0.9473684210526315,
+        "tx": 1.4210526315789593,
+        "ty": 16.94736842105266
+      },
+      {
+        "top": 17,
+        "bottom": 492,
+        "left": 61,
+        "right": 446,
+        "anchor": 252.61666666666667,
+        "scale": 0.9473684210526315,
+        "tx": 16.678947368421063,
+        "ty": 17.894736842105317
+      },
+      {
+        "top": 17,
+        "bottom": 493,
+        "left": 55,
+        "right": 446,
+        "anchor": 249.52777777777777,
+        "scale": 0.9453781512605042,
+        "tx": 20.101890756302538,
+        "ty": 17.928571428571445
+      }
+    ],
+    "excludedFrames": []
+  },
+  {
+    "id": "09",
+    "key": "thinking",
+    "name": "思考",
+    "description": "托腮、转动视线，想一想下一步",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "09_思考_六帧.png",
+    "webp": "网页动画/thinking.webp",
+    "apng": "网页动画/thinking.apng",
+    "poster": "静态首帧/thinking.png",
+    "video": "视频预览/thinking.mp4",
+    "alignment": [
+      {
+        "top": 7,
+        "bottom": 494,
+        "left": 110,
+        "right": 465,
+        "anchor": 270.03333333333336,
+        "scale": 0.9240246406570842,
+        "tx": 6.482546201231997,
+        "ty": 27.53182751540038
+      },
+      {
+        "top": 7,
+        "bottom": 495,
+        "left": 93,
+        "right": 450,
+        "anchor": 253.3388888888889,
+        "scale": 0.9221311475409836,
+        "tx": 22.388319672131132,
+        "ty": 27.54508196721315
+      },
+      {
+        "top": 7,
+        "bottom": 495,
+        "left": 83,
+        "right": 440,
+        "anchor": 243.16666666666666,
+        "scale": 0.9221311475409836,
+        "tx": 31.76844262295083,
+        "ty": 27.54508196721315
+      },
+      {
+        "top": 3,
+        "bottom": 494,
+        "left": 111,
+        "right": 466,
+        "anchor": 271.9222222222222,
+        "scale": 0.9164969450101833,
+        "tx": 6.784114052953157,
+        "ty": 31.250509164969458
+      },
+      {
+        "top": 3,
+        "bottom": 494,
+        "left": 94,
+        "right": 450,
+        "anchor": 253.77777777777777,
+        "scale": 0.9164969450101833,
+        "tx": 23.41344195519349,
+        "ty": 31.250509164969458
+      },
+      {
+        "top": 3,
+        "bottom": 494,
+        "left": 84,
+        "right": 439,
+        "anchor": 243.56666666666666,
+        "scale": 0.9164969450101833,
+        "tx": 32.77189409368637,
+        "ty": 31.250509164969458
+      }
+    ],
+    "excludedFrames": []
+  }
+]

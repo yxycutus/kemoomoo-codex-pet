@@ -1,0 +1,32 @@
+﻿# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Large intermediate files
+sprites/动画预览/encoded-frames/
+sprites/final/spritesheet-extended-raw.png
+sprites/final/spritesheet-extended.png
+
+# Codex internal (not needed for end users)
+sprites/imagegen-jobs.json
+sprites/宠物创建记录.json
+
+# PSD files (too large for GitHub)
+*.psd

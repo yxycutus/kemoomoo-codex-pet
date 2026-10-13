@@ -1,0 +1,7 @@
+Create one clean full-body reference sprite for ChatGPT pet 科哞哞.
+
+Pet identity: Preserve the supplied chibi human in cream cow hood costume, brown bob hair and brown eyes, golden horns and hooves, blue USTC top, blue diagonal strap and globe bag on viewer-right hip. Keep supplied USTC letters correctly oriented. Painterly soft plush anime illustration. Failure: expressive loud crying with mouth open and opaque tears attached to cheeks, no detached droplets. Directional drag states: alternating running gait. Active-work state: focused thinking with hoof at chin and feet planted. Review: inspect existing globe bag, no new props. All original source files must remain untouched..
+Style: Pet-safe sprite: compact full-body mascot, readable in a 192x208 cell, clear silhouette, simple face, stable palette/materials, and crisp edges for chroma-key extraction. Style `painterly`: Painterly mascot with simplified brush texture, readable forms, stable palette, and enough edge clarity for clean extraction.
+
+
+Place a single centered pose on a perfectly flat pure green #00FF00 chroma-key background. Keep the full pet visible, compact, readable at 192x208, and easy to animate. Preserve approved reference identity cues. No scenery, text, borders, checkerboard transparency, shadows, glows, detached effects, or extra props. Keep #00FF00 and close colors out of the pet, props, highlights, and effects.

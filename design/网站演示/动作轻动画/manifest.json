@@ -1,0 +1,405 @@
+[
+  {
+    "id": "01",
+    "key": "welcome",
+    "name": "欢迎",
+    "description": "招招手，和你打个招呼",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "01_欢迎_六帧.png",
+    "webp": "网页动画/welcome.webp",
+    "apng": "网页动画/welcome.apng",
+    "poster": "静态首帧/welcome.png",
+    "video": "视频预览/welcome.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "02",
+    "key": "mentor",
+    "name": "找导师",
+    "description": "指向导师名片，介绍科研伙伴",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3220,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 1900
+      },
+      {
+        "frame": 4,
+        "durationMs": 220
+      },
+      {
+        "frame": 2,
+        "durationMs": 240
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 2,
+        "durationMs": 200
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 0,
+        "durationMs": 300
+      }
+    ],
+    "source": "02_找导师_六帧.png",
+    "webp": "网页动画/mentor.webp",
+    "apng": "网页动画/mentor.apng",
+    "poster": "静态首帧/mentor.png",
+    "video": "视频预览/mentor.mp4",
+    "excludedFrames": [
+      1
+    ]
+  },
+  {
+    "id": "03",
+    "key": "project",
+    "name": "找项目",
+    "description": "轻点项目清单，确认探索方向",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "03_找项目_六帧.png",
+    "webp": "网页动画/project.webp",
+    "apng": "网页动画/project.apng",
+    "poster": "静态首帧/project.png",
+    "video": "视频预览/project.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "04",
+    "key": "resources",
+    "name": "找资源",
+    "description": "读一会儿书，让书页轻轻动起来",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3000,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 240
+      },
+      {
+        "frame": 2,
+        "durationMs": 100
+      },
+      {
+        "frame": 3,
+        "durationMs": 100
+      },
+      {
+        "frame": 4,
+        "durationMs": 200
+      },
+      {
+        "frame": 0,
+        "durationMs": 360
+      }
+    ],
+    "source": "04_找资源_六帧.png",
+    "webp": "网页动画/resources.webp",
+    "apng": "网页动画/resources.apng",
+    "poster": "静态首帧/resources.png",
+    "video": "视频预览/resources.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "05",
+    "key": "results",
+    "name": "看成果",
+    "description": "举起小手，为进展喝彩",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 200
+      },
+      {
+        "frame": 3,
+        "durationMs": 240
+      },
+      {
+        "frame": 4,
+        "durationMs": 200
+      },
+      {
+        "frame": 0,
+        "durationMs": 280
+      }
+    ],
+    "source": "05_看成果_六帧.png",
+    "webp": "网页动画/results.webp",
+    "apng": "网页动画/results.apng",
+    "poster": "静态首帧/results.png",
+    "video": "视频预览/results.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "06",
+    "key": "notice",
+    "name": "看通知",
+    "description": "拿起小喇叭，提醒新消息",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "06_看通知_六帧.png",
+    "webp": "网页动画/notice.webp",
+    "apng": "网页动画/notice.apng",
+    "poster": "静态首帧/notice.png",
+    "video": "视频预览/notice.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "07",
+    "key": "lecture",
+    "name": "听讲座",
+    "description": "落笔、抬笔，认真记下新想法",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "07_听讲座_六帧.png",
+    "webp": "网页动画/lecture.webp",
+    "apng": "网页动画/lecture.apng",
+    "poster": "静态首帧/lecture.png",
+    "video": "视频预览/lecture.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "08",
+    "key": "team",
+    "name": "组队招募",
+    "description": "张开双臂，邀请伙伴一起探索",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3340,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 1800
+      },
+      {
+        "frame": 1,
+        "durationMs": 200
+      },
+      {
+        "frame": 2,
+        "durationMs": 220
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 400
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 1,
+        "durationMs": 220
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "08_组队招募_六帧.png",
+    "webp": "网页动画/team.webp",
+    "apng": "网页动画/team.apng",
+    "poster": "静态首帧/team.png",
+    "video": "视频预览/team.mp4",
+    "excludedFrames": []
+  },
+  {
+    "id": "09",
+    "key": "thinking",
+    "name": "思考",
+    "description": "托腮、转动视线，想一想下一步",
+    "width": 512,
+    "height": 512,
+    "durationMs": 3100,
+    "timeline": [
+      {
+        "frame": 0,
+        "durationMs": 2000
+      },
+      {
+        "frame": 1,
+        "durationMs": 180
+      },
+      {
+        "frame": 2,
+        "durationMs": 180
+      },
+      {
+        "frame": 3,
+        "durationMs": 120
+      },
+      {
+        "frame": 4,
+        "durationMs": 240
+      },
+      {
+        "frame": 5,
+        "durationMs": 180
+      },
+      {
+        "frame": 0,
+        "durationMs": 200
+      }
+    ],
+    "source": "09_思考_六帧.png",
+    "webp": "网页动画/thinking.webp",
+    "apng": "网页动画/thinking.apng",
+    "poster": "静态首帧/thinking.png",
+    "video": "视频预览/thinking.mp4",
+    "excludedFrames": []
+  }
+]
