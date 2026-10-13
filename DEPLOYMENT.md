@@ -110,3 +110,9 @@ document.dispatchEvent(new CustomEvent('cutus:pet', {
 - 偏好不保存：浏览器可能禁用 localStorage；仍可使用，但刷新后不保留设置。
 
 发布检查见 [TESTING.md](TESTING.md)。
+
+## 本仓库公网发布
+
+演示地址：<https://yxycutus.github.io/kemoomoo-codex-pet/>。
+
+`.github/workflows/check.yml` 先运行资源校验和浏览器回归，再将 `web/` 发布到 GitHub Pages。只有 `main` 分支的推送或手动运行会部署；PR 只做检查。运行产物附带代码与素材许可，不包含内部制作日志。

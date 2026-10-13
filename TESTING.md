@@ -38,5 +38,5 @@ node tests/web.cjs
 - 资源检查：310 个发布文件，232 个图像文件、11 个 JSON、11 处 Markdown 本地链接；精灵图帧占用与透明度、桌面包清单、报告哈希均通过。
 - 浏览器：Windows 本机 Chrome/Chromium，桌面与触摸模拟；全部功能回归通过，包括真实 CDP 触摸事件、四种宽度及短屏、禁用存储、WebP/PNG 故障、PNG 重试、无推荐链接的面板和宿主样式冲突。
 - JS/Python 语法与 `git diff --check` 通过。两个已有历史提交的常见令牌/私钥特征检查未发现匹配。
-- CI 所用 Pillow 12.3.0 与 Playwright 1.62.1 已核实可从官方包仓库取得。GitHub Actions 尚未在远端执行；推送后以远端运行结果为准。
+- CI 所用 Pillow 12.3.0 与 Playwright 1.62.1 已核实可从官方包仓库取得。审查提交 `ecab296` 已通过 GitHub Actions 的 Ubuntu/Chromium 检查（运行编号 38403650324）。后续 `main` 通过检查后自动发布网页演示。
 - 桌面包仅完成格式和资源验证，未安装到用户的实际桌宠目录；未实测跨版本导入。原有视觉局限仍见上节。

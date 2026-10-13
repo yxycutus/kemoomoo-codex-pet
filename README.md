@@ -157,6 +157,8 @@ kemoomoo-codex-pet/
 
 ### 网页演示
 
+[打开公网演示](https://yxycutus.github.io/kemoomoo-codex-pet/)（GitHub Pages，`main` 通过自动检查后发布）。
+
 在仓库根目录运行：
 
 ```bash

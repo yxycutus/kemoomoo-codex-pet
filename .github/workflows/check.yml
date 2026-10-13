@@ -1,5 +1,8 @@
 name: Release checks
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -19,3 +22,29 @@ jobs:
       - run: npm install --no-save --package-lock=false playwright@1.62.1
       - run: npx playwright install --with-deps chromium
       - run: node tests/web.cjs
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Include distribution licenses
+        run: cp LICENSE LICENSE-CODE LICENSE-ASSETS web/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: web
+      - name: Publish demo
+        id: deployment
+        uses: actions/deploy-pages@v4
