@@ -29,3 +29,7 @@ sprites/宠物创建记录.json
 
 # PSD files (too large for GitHub)
 *.psd
+
+# Local verification artifacts
+.test-artifacts/
+.env.*

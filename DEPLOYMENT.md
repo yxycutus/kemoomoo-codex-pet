@@ -1,247 +1,112 @@
-# 科哞哞——Codex 桌宠部署指南
+# 科哞哞部署指南
 
-本文档详细说明如何将科哞哞桌宠部署到你的网站。
+桌面端安装包和入口见 [README](README.md#桌面端安装)。本指南介绍独立网页伙伴，不需要 API Key，不连接桌面任务。
 
----
+## 本地预览
 
-## 一、快速开始
-
-### 1.1 文件清单
-
-部署所需的最小文件集：
-
-```
-web/
-+-- pet.js              # 桌宠核心逻辑（307 行）
-+-- pet.css             # 桌宠样式（48 行）
-+-- pet/
-    +-- spritesheet.webp    # 精灵图（WebP 格式，推荐）
-    +-- spritesheet.png     # 精灵图（PNG 格式，WebP 加载失败时的备用）
-    +-- scenes.json         # 场景图来源与校验元数据（仅供查阅，脚本不读取）
-    +-- cutouts/            # 场景抠图（WebP，桌宠实际使用）
-    +-- scenes/             # 带背景的完整场景图（WebP，仅供预览参考）
-```
-
-### 1.2 三步集成
-
-**第一步**：复制文件到你的网站资源目录
+在仓库根目录运行：
 
 ```bash
-# 假设你的网站资源在 assets/ 下
-cp -r web/pet.js web/pet.css web/pet/ your-site/assets/
+python -m http.server 8080 --bind 127.0.0.1 --directory web
 ```
 
-**第二步**：在 HTML 中引入
+打开 <http://127.0.0.1:8080/>，可测试点击、拖动、动作和设置。
+
+## 集成到网站
+
+最小运行文件：
+
+```text
+assets/
+├── pet.js
+├── pet.css
+└── pet/
+    ├── spritesheet.webp
+    ├── spritesheet.png
+    └── cutouts/           # 九个场景 WebP
+```
+
+`scenes.json`、`cutouts/manifest.json` 和 `scenes/` 是素材来源与参考资料，运行时不会读取这些 JSON。
+
+在页面中引入（`defer` 确保页面内容已经解析）：
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- 其他 head 内容 -->
-  <link rel="stylesheet" href="assets/pet.css">
-</head>
-<body>
-  <!-- 你的页面内容 -->
-  
-  <!-- 在 body 结束前引入 -->
-  <script src="assets/pet.js" defer></script>
-</body>
-</html>
+<link rel="stylesheet" href="/assets/pet.css">
+<script src="/assets/pet.js" data-site-base="../" defer></script>
 ```
 
-**第三步**：完成！桌宠会自动初始化并显示在页面右下角。
+`pet/` 始终相对于脚本定位；`data-site-base` 相对于脚本 URL 解析。脚本放在 `assets/` 时，`../` 代表网站根目录；不设置时默认使用脚本所在目录。部署到 `/my-site/` 时改用 `/my-site/assets/pet.css` 和 `/my-site/assets/pet.js`，`data-site-base="../"` 不变。不要使用 `type="module"`：这是通过 `document.currentScript` 定位资源的普通脚本。
 
----
+默认导航仅列出当前页面的真实章节，不依赖作者个人站的目录。原 Cutus 网站可加 `data-site-profile="cutus"` 恢复其专属文案和链接；其他网站不应启用此选项。
 
-## 二、自定义配置
+## 自定义
 
-### 2.1 修改页面感知
-
-`pet.js` 中的 `pageProfile` 函数决定了桌宠在不同页面的行为。
-修改此函数以适配你的网站结构：
+`pageProfile` 返回场景、标题、介绍和可选推荐链接。若自行替换该函数，使用完整示例：
 
 ```javascript
 function pageProfile(path) {
-  // path 是相对于 siteBase 的路径
-  if (path === 'index.html') return entry(
-    'auto',          // 场景 ID：'auto' 表示使用 spritesheet 动画
-    '首页标题',       // 面板标题
-    '介绍语...',      // 首次出现时的引导语
-    ['推荐文字', '推荐链接']  // 推荐内容
-  );
-  if (path === 'about.html') return entry(
-    'mentor',         // 场景 ID：对应 cutouts/ 和 scenes/ 中的文件
-    '关于页面',
-    '这是关于页面...'
-  );
-  // ... 更多页面
-  return entry('thinking', '未找到', '默认提示');
+  const entry = (scene, title, intro, recommendation = []) =>
+    ({ scene, title, intro, recommendation });
+  if (path === 'about.html') return entry('mentor', '关于我们', '一起认识这个项目。');
+  return entry('auto', '欢迎', '我是科哞哞。');
 }
 ```
 
-可用的场景 ID：
-- `auto`：使用 spritesheet 动画循环
-- `welcome`、`mentor`、`project`、`resource`
-- `achievement`、`notice`、`lecture`、`recruit`、`thinking`
+`auto` 表示精灵动画待机；可选场景为 `welcome`、`mentor`、`project`、`resource`、`achievement`、`notice`、`lecture`、`recruit`、`thinking`。场景标签在 `SCENES` 中配置。
 
-### 2.2 修改场景描述
+`scale` 默认为桌面 85%、窄屏 65%，允许 50%–120%。`keys` 定义 localStorage 键名；同源不同项目若需隔离偏好，可更换前缀。一个页面只支持一个科哞哞实例，重复加载脚本不会再创建一个。
 
-`SCENES` 数组定义了每个场景的标签和描述：
+## 从页面触发
 
-```javascript
-const SCENES = [
-  ['welcome', '欢迎探索', '好奇心，是出发的第一步。'],
-  ['mentor', '找导师', '带着问题，认识新的研究方向。'],
-  // ... 修改这里的文字以适配你的网站
-].map(([id, label, note]) => ({id, label, note}));
-```
-
-### 2.3 调整初始大小
-
-找到 `savedScale` 相关代码，修改默认值：
+等待桌宠加载后发送事件；加载前的事件不会排队：
 
 ```javascript
-// 原始代码
-let scale = Number.isFinite(savedScale) && savedScale >= .5 && savedScale <= 1.2
-  ? savedScale
-  : innerWidth < 600 ? .65 : .85;
-
-// 修改默认值（例如桌面端 1.0，移动端 0.75）
-let scale = Number.isFinite(savedScale) && savedScale >= .5 && savedScale <= 1.2
-  ? savedScale
-  : innerWidth < 600 ? .75 : 1.0;
-```
-
-### 2.4 修改 localStorage 键名
-
-如果你的网站可能有多个桌宠实例，修改键名避免冲突：
-
-```javascript
-const keys = {
-  hidden: 'YOUR-PREFIX-pet-dismissed',
-  scale: 'YOUR-PREFIX-pet-scale',
-  position: 'YOUR-PREFIX-pet-position',
-  paused: 'YOUR-PREFIX-pet-paused',
-  gaze: 'YOUR-PREFIX-pet-gaze',
-  guide: 'YOUR-PREFIX-pet-guide'
-};
-```
-
-### 2.5 修改导航链接
-
-`renderNavigation` 函数中的快速导航链接需要适配你的网站：
-
-```javascript
-[
-  ['回到首页', 'index.html', '看看正在做的事'],
-  ['知识与论文', 'knowledge/index.html', '从问题出发'],
-  // ... 修改为你的网站链接
-]
-```
-
----
-
-## 三、高级集成
-
-### 3.1 从页面触发桌宠动画
-
-使用自定义事件让桌宠响应页面交互：
-
-```javascript
-// 触发动画
 document.dispatchEvent(new CustomEvent('cutus:pet', {
-  detail: { state: 'waving' }  // 任意动画状态名
+  detail: { state: 'waving' }
 }));
-
-// 触发场景
 document.dispatchEvent(new CustomEvent('cutus:pet', {
   detail: { scene: 'achievement', duration: 5000 }
 }));
 ```
 
-### 3.2 精灵图格式说明
+动作结束、场景时长结束后返回当前页面姿态。`duration` 限制为 500–10000 毫秒。九种动作见下表；视线方向由鼠标驱动，不是事件动作名。
 
-精灵图 `spritesheet.webp` 的布局为 8 列 x 11 行，每行一种状态，该状态的帧按列依次排列：
+## 精灵图与替换素材
 
-```
-行 0   idle           6 帧（第 0-5 列）  安静陪伴
-行 1   running-right  8 帧（第 0-7 列）  向右拖动奔跑
-行 2   running-left   8 帧（第 0-7 列）  向左拖动奔跑
-行 3   waving         4 帧（第 0-3 列）  打招呼
-行 4   jumping        5 帧（第 0-4 列）  开心跳跃
-行 5   failed         8 帧（第 0-7 列）  出错大哭
-行 6   waiting        6 帧（第 0-5 列）  等待回应
-行 7   running        6 帧（第 0-5 列）  认真思考
-行 8   review         6 帧（第 0-5 列）  检查成果
-行 9   look-row-9     8 帧（第 0-7 列）  视线跟随 000°-157.5°（顺时针）
-行 10  look-row-10    8 帧（第 0-7 列）  视线跟随 180°-337.5°（顺时针）
-```
+网页精灵图为 1536×2288、RGBA、8 列×11 行，每格 192×208：
 
-- 每格：192 x 208 像素
-- 总共：8 列 x 11 行 = 1536 x 2288 像素
-- 第 0-8 行：9 种动画状态
-- 第 9-10 行：16 方向视线跟随
+| 行 | 状态 | 有效帧 |
+| --- | --- | --- |
+| 0 | idle | 6 |
+| 1 | running-right | 8 |
+| 2 | running-left | 8 |
+| 3 | waving | 4 |
+| 4 | jumping | 5 |
+| 5 | failed | 8 |
+| 6 | waiting | 6 |
+| 7 | running | 6 |
+| 8 | review | 6 |
+| 9 | 视线：0°–157.5° | 8 |
+| 10 | 视线：180°–337.5° | 8 |
 
-### 3.3 适配自己的角色
+每行从第 0 列开始排列，未使用格子透明。视线从正上方起，顺时针每 22.5° 一个方向。九行桌面包为 1536×1872，不可直接替换网页的十一行图。
 
-如果你想用科哞哞的框架但换成自己的角色：
+更换角色时同时替换 `spritesheet.webp`、`spritesheet.png` 和九张 `cutouts/*.webp`。保持尺寸与帧布局即可，无需修改尺寸校验。场景抠图为 512×512 透明图。代码允许 MIT 复用，现有角色素材的商业使用仍需授权。
 
-1. 准备你的精灵图（1536 x 2288，8 列 x 11 行，每格 192 x 208）
-2. 替换 `pet/spritesheet.webp` 和 `pet/spritesheet.png`
-3. 替换 `pet/cutouts/` 和 `pet/scenes/` 中的图片
-4. 修改 `pet.js` 中的验证逻辑（`loadSprite` 函数中的尺寸检查）
+## 交互与兼容性
 
----
+- 待机图循环播放；场景抠图使用轻微 CSS 动画。页面不可见时暂停。
+- 尊重系统减少动态设置，也可手动暂停动画、关闭视线跟随和章节介绍。
+- 支持鼠标、触摸拖动；聚焦桌宠后可用方向键移动、Enter 打开面板、Escape 关闭面板。
+- 导航面板为非模态 dialog，不锁住页面其他区域。
+- 使用现代浏览器 API，包括 Pointer Events、AbortController、Object.hasOwn 和 Array.at；不支持 IE。当前回归覆盖 Chromium，未逐一实测 Firefox/Safari。
 
-## 四、性能与兼容性
+## 故障排查
 
-### 4.1 性能考虑
+- 不显示：检查资源 HTTP 状态，或点击「叫回科哞哞」。请通过 HTTP 服务器预览。
+- WebP 请求失败或尺寸错误：自动尝试 PNG；两者均失败时显示重试按钮。
+- 场景抠图失败：回退到待机精灵图。
+- 动画不播放：检查系统减少动态设置和面板的待机动画开关。
+- 偏好不保存：浏览器可能禁用 localStorage；仍可使用，但刷新后不保留设置。
 
-- 精灵图使用 WebP 格式，体积更小
-- 仅在需要时播放动画，闲置时暂停
-- 支持 `prefers-reduced-motion` 系统设置
-- 页面不可见时自动暂停所有动画
-- 使用 `requestAnimationFrame` 优化视线跟随
-
-### 4.2 浏览器兼容
-
-- 支持所有现代浏览器（Chrome、Firefox、Safari、Edge）
-- 需要支持 CSS Custom Properties（CSS 变量）
-- 需要支持 ES6+（`const`、`let`、箭头函数等）
-- 不支持 IE
-
-### 4.3 无障碍
-
-- 桌宠按钮具有 `aria-label`
-- 导航面板使用 `role="dialog"`
-- 支持键盘操作（Tab、方向键、Escape）
-- 支持 `focus-visible` 样式
-- 尊重 `prefers-reduced-motion` 设置
-
----
-
-## 五、故障排除
-
-### 桌宠不显示
-
-- 检查 `pet.js` 和 `pet.css` 路径是否正确
-- 检查浏览器控制台是否有错误
-- 确认精灵图 `spritesheet.webp` 已正确加载
-- 桌宠可能之前被关闭了（检查 localStorage 中的 `cutus-pet-dismissed`）
-
-### 精灵图加载失败
-
-- 确认精灵图尺寸为 1536 x 2288
-- 检查 WebP 格式是否被浏览器支持
-- 如果 WebP 不支持，代码会尝试 PNG 备用
-
-### 动画不播放
-
-- 检查是否开启了 `prefers-reduced-motion`
-- 检查设置面板中"待机动画"是否开启
-- 确认浏览器未限制动画执行
-
-### 位置不保存
-
-- 检查浏览器是否禁用了 localStorage
-- 确认没有其他脚本覆盖相同的键名
+发布检查见 [TESTING.md](TESTING.md)。

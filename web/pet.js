@@ -2,8 +2,11 @@
 (() => {
   'use strict';
   if (document.getElementById('kemoomoo')) return;
-  const scriptURL = new URL(document.currentScript.src);
-  const assetBase = new URL('pet/', scriptURL), siteBase = new URL('../', scriptURL);
+  const script = document.currentScript;
+  const scriptURL = new URL(script.src);
+  const assetBase = new URL('pet/', scriptURL);
+  const siteBase = new URL(script.dataset.siteBase || './', scriptURL);
+  const cutusProfile = script.dataset.siteProfile === 'cutus';
   const asset = path => new URL(path, assetBase).href, site = path => new URL(path, siteBase).href;
   const keys = { hidden:'cutus-pet-dismissed', scale:'cutus-pet-scale', position:'cutus-pet-position', paused:'cutus-pet-paused', gaze:'cutus-pet-gaze', guide:'cutus-pet-guide' };
   const read = key => { try { return localStorage.getItem(key); } catch { return null; } };
@@ -38,7 +41,9 @@
   const button = (cls,text,label) => { const el=make('button',cls,text); el.type='button'; if(label) el.setAttribute('aria-label',label); return el; };
   const savedScale = Number(read(keys.scale));
   let scale = Number.isFinite(savedScale) && savedScale >= .5 && savedScale <= 1.2 ? savedScale : innerWidth < 600 ? .65 : .85;
-  const route = decodeURI(location.pathname.slice(siteBase.pathname.length)).replace(/\/$/,'/index.html') || 'index.html';
+  let route = location.pathname.startsWith(siteBase.pathname) ? location.pathname.slice(siteBase.pathname.length) : location.pathname;
+  try { route = decodeURI(route); } catch { /* Keep malformed URL escapes usable. */ }
+  route = route.replace(/\/$/,'/index.html') || 'index.html';
   const profile = pageProfile(route);
   let mode = profile.scene;
   let gazeEnabled=read(keys.gaze)!=='0', guideEnabled=read(keys.guide)!=='0';
@@ -70,7 +75,8 @@
 
   // Page identity decides the resting pose; never carry a manually selected pose to another page.
   function pageProfile(path) {
-    const entry=(scene,title,intro,recommendation)=>({scene,title,intro,recommendation});
+    const entry=(scene,title,intro,recommendation=[])=>({scene,title,intro,recommendation});
+    if(!cutusProfile) return entry('auto',document.title || '一起探索','我是科哞哞，陪你浏览这一页。点击我打开章节导航和设置，也可以拖动换个位置。');
     if(path==='index.html') return entry('auto','从这里认识 Cutus','我是科哞哞，陪你看看机器人项目和公开笔记。往下走，我来给你指路。',['先看机器人项目','knowledge/aloha-mini.html']);
     if(path==='about/index.html') return entry('mentor','认识一下 Cutus','这里是 Cutus 的学习、研究和生活。我们从他现在关注的问题看起。',['沿时间线了解经历','timeline/index.html']);
     if(path==='timeline/index.html') return entry('notice','把经历连成一条线','这条时间线从最近的经历往回走，记录学习、科研与实践的变化。',['再看看当前的方向','about/index.html']);
@@ -106,10 +112,10 @@
       ['#routes-title','resource','还没决定读什么？这三条路线分别从表达、研究和学习节奏切入。']
     ];
     const known=new Map();
-    curated.forEach(([selector,scene,text,label,url])=>{const el=$(selector);if(el)known.set(el,{scene,text,label,url});});
+    (cutusProfile ? curated : []).forEach(([selector,scene,text,label,url])=>{const el=$(selector);if(el)known.set(el,{scene,text,label,url});});
     const headings=[...document.querySelectorAll('main h2')].filter(h=>!h.closest('.home-hero,.flight-roadmap,.article-toc,.pet-bubble')&&h.textContent.trim());
     guideSections=headings.map((el,index)=>{
-      if(!el.id)el.id=`companion-section-${index+1}`;
+      if(!el.id){let id=`companion-section-${index+1}`;while(document.getElementById(id))id+='-pet';el.id=id;}
       let data=known.get(el),title=brief(el.textContent,35);
       if(!data){
         const semantic=[[/演示|调测|实验|技术|职责|工程项目/,'project'],[/成果|收获|答辩/,'achievement'],[/思考|局限|问题|展望/,'thinking'],[/联系|交流/,'recruit'],[/背景|教育/,'mentor'],[/技能|学习|课程/,'lecture']].find(([pattern])=>pattern.test(title));
@@ -215,27 +221,29 @@
   function renderNavigation() {
     const content=$('#pet-content',panel);content.replaceChildren();content.scrollTop=0;
     content.append(make('p','pet-intro',activeSection?`我们正看到「${activeSection.title}」。接下来想去哪儿？`:'想去哪里？我带你找下一条线索。'));
-    const [label,url]=profile.recommendation,recommend=make('a','pet-recommend');recommend.href=site(url);recommend.append(make('span','pet-recommend-kicker','接下来，不妨'),make('strong','',label+' →'));content.append(recommend);
+    const [label,url]=profile.recommendation || [];
+    if(url){const recommend=make('a','pet-recommend');recommend.href=site(url);recommend.append(make('span','pet-recommend-kicker','接下来，不妨'),make('strong','',label+' →'));content.append(recommend);}
     const nav=make('nav','pet-nav');nav.setAttribute('aria-label','科哞哞快速导航');
-    [['回到首页','index.html','看看正在做的事'],['知识与论文','knowledge/index.html','从问题出发，一起读'],['学习时间线','timeline/index.html','沿着经历往回走'],['认识 Cutus','about/index.html','研究，也有生活'],['搜索全站','search.html','找一条具体的线索']].forEach(([label,url,note])=>{const a=make('a');a.href=site(url);if(route===url)a.setAttribute('aria-current','page');const text=make('span');text.append(make('strong','',label),make('small','',note));a.append(text,make('span','pet-nav-arrow','↗'));nav.append(a);});
+    (cutusProfile ? [['回到首页','index.html','看看正在做的事'],['知识与论文','knowledge/index.html','从问题出发，一起读'],['学习时间线','timeline/index.html','沿着经历往回走'],['认识 Cutus','about/index.html','研究，也有生活'],['搜索全站','search.html','找一条具体的线索']] : []).forEach(([label,url,note])=>{const a=make('a');a.href=site(url);if(route===url)a.setAttribute('aria-current','page');const text=make('span');text.append(make('strong','',label),make('small','',note));a.append(text,make('span','pet-nav-arrow','↗'));nav.append(a);});
     content.append(nav);
     if(guideSections.length){const map=make('details','pet-page-map');map.append(make('summary','','这一页的路标'));const local=make('nav','pet-local-nav');local.setAttribute('aria-label','当前页面章节');guideSections.forEach(item=>{const a=make('a','',item.title);a.href=`#${encodeURIComponent(item.el.id)}`;local.append(a);});map.append(local);content.append(map);}
     const settings=make('details','pet-settings');settings.innerHTML=`<summary><span aria-hidden="true">⚙</span> 科哞哞设置</summary>
       <div class="pet-settings-body"><div class="pet-size-control"><span>大小</span><button type="button" data-size="-1" aria-label="缩小科哞哞">−</button><output class="pet-size-value"></output><button type="button" data-size="1" aria-label="放大科哞哞">+</button></div>
-      <label class="pet-setting"><span><strong>眼睛跟随</strong><small>首页闲置时，看向你的鼠标</small></span><input type="checkbox" data-setting="gaze"></label>
+      <label class="pet-setting"><span><strong>眼睛跟随</strong><small>动画待机时，看向你的鼠标</small></span><input type="checkbox" data-setting="gaze"></label>
       <label class="pet-setting"><span><strong>沿途介绍</strong><small>下滑时，简短介绍当前内容</small></span><input type="checkbox" data-setting="guide"></label>
       <label class="pet-setting"><span><strong>待机动画</strong><small class="pet-motion-note"></small></span><input type="checkbox" data-setting="animation"></label>
       <div class="pet-options"><button type="button" class="pet-reset">回到角落</button><button type="button" class="pet-hide">暂时收起</button></div><p class="pet-hint">拖动换个位置，方向键也可以移动。</p></div>`;
     content.append(settings);updateControls();placePanels();
   }
-  function openPanel() {if(dismissed||!loaded) return;toast.hidden=true;clearTimeout(toastTimer);clearTimeout(introTimer);resetGaze();panel.hidden=false;pet.setAttribute('aria-expanded','true');renderNavigation();$('.pet-recommend',panel).focus({preventScroll:true});}
+  function openPanel() {if(dismissed||!loaded) return;toast.hidden=true;clearTimeout(toastTimer);clearTimeout(introTimer);resetGaze();panel.hidden=false;pet.setAttribute('aria-expanded','true');renderNavigation();($('.pet-recommend',panel)||$('.pet-panel-close',panel)).focus({preventScroll:true});}
   function closePanel(focus=false) {panel.hidden=true;pet.setAttribute('aria-expanded','false');if(focus&&!host.hidden) pet.focus({preventScroll:true});}
   function hidePet() {endDrag(true);dismissed=true;save(keys.hidden,'1');stopActivity();clearTimeout(scrollTimer);clearTimeout(toastTimer);clearTimeout(introTimer);toast.hidden=true;closePanel();host.hidden=true;restore.hidden=false;restore.textContent='叫回科哞哞';restore.focus({preventScroll:true});}
   function failedLoad() {loading=false;loaded=false;stopActivity();host.hidden=true;closePanel();restore.hidden=false;restore.textContent='重试科哞哞';restore.setAttribute('aria-label','科哞哞未能加载，点击重试');}
   function loadSprite() {
     if(loading||destroyed) return;loading=true;const image=new Image();let retried=false;
-    image.onload=()=>{loading=false;if(destroyed)return;if(image.naturalWidth!==1536||image.naturalHeight!==2288){failedLoad();return;}loaded=true;sprite.style.backgroundImage=`url("${image.src}")`;host.hidden=dismissed;restore.hidden=!dismissed;restore.textContent='叫回科哞哞';restore.setAttribute('aria-label','叫回科哞哞');buildGuide();relayout();rest();if(!dismissed&&!motion.matches&&!paused&&mode==='auto')perform('waving','welcome');introTimer=setTimeout(()=>{if(scrollY<100){lastContextAt=Date.now();say(profile.intro,...profile.recommendation);}else checkGuide();},1400);};
-    image.onerror=()=>{if(!retried){retried=true;image.src=asset('spritesheet.png');}else failedLoad();};
+    image.onload=()=>{loading=false;if(destroyed)return;if(image.naturalWidth!==1536||image.naturalHeight!==2288){fallback();return;}loaded=true;sprite.style.backgroundImage=`url("${image.src}")`;host.hidden=dismissed;restore.hidden=!dismissed;restore.textContent='叫回科哞哞';restore.setAttribute('aria-label','叫回科哞哞');buildGuide();relayout();rest();if(!dismissed&&!motion.matches&&!paused&&mode==='auto')perform('waving','welcome');introTimer=setTimeout(()=>{if(scrollY<100){lastContextAt=Date.now();say(profile.intro,...(profile.recommendation || []));}else checkGuide();},1400);};
+    const fallback=()=>{if(destroyed)return;if(!retried){retried=true;loading=true;image.src=asset('spritesheet.png');}else failedLoad();};
+    image.onerror=fallback;
     image.src=asset('spritesheet.webp');
   }
   function resetGaze() {clearTimeout(gazeTimer);if(gaze<0)return;gaze=-1;renderCurrent();tick();}
@@ -300,7 +308,7 @@
   on(window,'error',event=>{if(event instanceof ErrorEvent)reactToError();});on(window,'unhandledrejection',reactToError);
   // Optional integration point for site features; never starts background API calls.
   on(document,'cutus:pet',event=>{const d=event.detail||{};if(Object.hasOwn(ANIMS,d.state))perform(d.state,'site');else if(scene(d.scene)&&loaded&&!dismissed&&!pointer)temporaryScene(d.scene,'site',clamp(Number(d.duration)||4000,500,10000));});
-  on(window,'pagehide',event=>{clearTimeout(animTimer);clearTimeout(actionTimer);clearTimeout(scrollTimer);clearTimeout(toastTimer);clearTimeout(gazeTimer);clearTimeout(introTimer);if(gazeRaf)cancelAnimationFrame(gazeRaf);if(!event.persisted){destroyed=true;cleanup.abort();}});
+  on(window,'pagehide',event=>{endDrag(true);clearTimeout(animTimer);clearTimeout(actionTimer);clearTimeout(scrollTimer);clearTimeout(toastTimer);clearTimeout(gazeTimer);clearTimeout(introTimer);if(gazeRaf)cancelAnimationFrame(gazeRaf);if(!event.persisted){destroyed=true;cleanup.abort();}});
   on(window,'pageshow',event=>{if(event.persisted){rest();checkGuide();}});
   try{const p=JSON.parse(read(keys.position));if(p&&[p.x,p.y].every(n=>Number.isFinite(n)&&n>=0&&n<=1))position=p;}catch{/* Malformed stored position. */}
   relayout();if(dismissed)restore.hidden=false;loadSprite();

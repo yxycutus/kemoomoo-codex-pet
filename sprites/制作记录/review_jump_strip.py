@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw
 from pathlib import Path
-p=Path('outputs') / '\u79d1\u54de\u54de\u684c\u5ba0'
+p=Path(__file__).resolve().parent.parent
+(p/'qa').mkdir(exist_ok=True)
 a=Image.open(p/'final/spritesheet.png').convert('RGBA')
 seq=[('idle5',0,5)]+[('jump'+str(i),4,i) for i in range(5)]+[('idle0',0,0)]
 out=Image.new('RGBA',(192*7,232),'#dddddd')

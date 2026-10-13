@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>科哞哞 · 桌宠演示</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="pet.css">
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { max-width: 760px; margin: auto; padding: 48px 24px 260px; line-height: 1.8; }
+    h1 { font-size: clamp(2rem, 7vw, 3.5rem); margin-bottom: 8px; }
+    main > section { margin-top: 64px; scroll-margin-top: 24px; }
+    #demo-actions button { font: inherit; padding: 8px 16px; margin: 4px; cursor: pointer; }
+    a { color: #287ab2; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg-card: #24272c; --ink: #f5f3ef; --ink-secondary: #e0dbd3; --ink-muted: #bfb7ac; --line: #56504b; --accent: #9acbff; }
+    }
+  </style>
+  <script src="pet.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>你好，我是科哞哞。</h1>
+    <p>穿着小牛连帽装、背着地球包，陪你从一个好问题走进科研。</p>
+    <p>点击右下角的科哞哞打开设置，拖动她换个位置，也可以用方向键移动。</p>
+    <section>
+      <h2 id="actions">和科哞哞打个招呼</h2>
+      <p>试试下面的动作。动作结束后，她会回到当前页面的陪伴姿态。</p>
+      <div id="demo-actions">
+        <button type="button" data-state="waving">挥挥手</button>
+        <button type="button" data-state="jumping">跳一下</button>
+        <button type="button" data-state="running">想一想</button>
+        <button type="button" data-state="review">检查成果</button>
+        <button type="button" data-scene="achievement">分享收获</button>
+      </div>
+    </section>
+    <section>
+      <h2 id="reading">一起阅读</h2>
+      <p>浏览有章节的页面时，科哞哞会根据标题和正文给出简短介绍。可以在设置中关闭沿途介绍或眼睛跟随。</p>
+    </section>
+    <section>
+      <h2 id="project">关于这个项目</h2>
+      <p>这里展示的是网页伙伴。桌面端安装方式、素材和创作记录见项目仓库。</p>
+      <p><a href="https://github.com/yxycutus/kemoomoo-codex-pet">查看项目与安装说明</a></p>
+      <p>科哞哞 by yxycutus / Cutus。代码使用 MIT 许可；角色图片与动画仅限署名、非商业使用。角色并非学校官方形象。</p>
+    </section>
+  </main>
+  <script>
+    document.getElementById('demo-actions').addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      document.dispatchEvent(new CustomEvent('cutus:pet', { detail: { ...button.dataset } }));
+    });
+  </script>
+</body>
+</html>
