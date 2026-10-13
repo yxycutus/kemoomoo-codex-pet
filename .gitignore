@@ -1,4 +1,4 @@
-﻿# OS
+# OS
 .DS_Store
 Thumbs.db
 Desktop.ini
@@ -22,7 +22,6 @@ __pycache__/
 # Large intermediate files
 sprites/动画预览/encoded-frames/
 sprites/final/spritesheet-extended-raw.png
-sprites/final/spritesheet-extended.png
 
 # Codex internal (not needed for end users)
 sprites/imagegen-jobs.json

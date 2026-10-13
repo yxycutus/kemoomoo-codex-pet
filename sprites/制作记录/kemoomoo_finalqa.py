@@ -4,8 +4,8 @@ import subprocess
 import sys
 from PIL import Image
 
-root = Path(r'C:\Users\jojo\Documents\Codex\2026-10-12\new-chat\outputs\科哞哞桌宠')
-skill = Path(r'C:\Users\jojo\.codex\plugins\cache\openai-curated-remote\work-pets\0.1.6\skills\create-pet\scripts')
+root = Path(__file__).resolve().parent.parent  # 科哞哞桌宠目录
+skill = Path('~/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet/scripts').expanduser()
 final = root/'final'/'spritesheet-extended.png'
 qa = root/'qa'
 

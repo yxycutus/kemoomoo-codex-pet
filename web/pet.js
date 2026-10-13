@@ -233,9 +233,10 @@
   function hidePet() {endDrag(true);dismissed=true;save(keys.hidden,'1');stopActivity();clearTimeout(scrollTimer);clearTimeout(toastTimer);clearTimeout(introTimer);toast.hidden=true;closePanel();host.hidden=true;restore.hidden=false;restore.textContent='叫回科哞哞';restore.focus({preventScroll:true});}
   function failedLoad() {loading=false;loaded=false;stopActivity();host.hidden=true;closePanel();restore.hidden=false;restore.textContent='重试科哞哞';restore.setAttribute('aria-label','科哞哞未能加载，点击重试');}
   function loadSprite() {
-    if(loading||destroyed) return;loading=true;const image=new Image();
-    image.onload=()=>{loading=false;if(destroyed)return;if(image.naturalWidth!==1536||image.naturalHeight!==2288){failedLoad();return;}loaded=true;host.hidden=dismissed;restore.hidden=!dismissed;restore.textContent='叫回科哞哞';restore.setAttribute('aria-label','叫回科哞哞');buildGuide();relayout();rest();if(!dismissed&&!motion.matches&&!paused&&mode==='auto')perform('waving','welcome');introTimer=setTimeout(()=>{if(scrollY<100){lastContextAt=Date.now();say(profile.intro,...profile.recommendation);}else checkGuide();},1400);};
-    image.onerror=failedLoad;image.src=asset('spritesheet.webp');
+    if(loading||destroyed) return;loading=true;const image=new Image();let retried=false;
+    image.onload=()=>{loading=false;if(destroyed)return;if(image.naturalWidth!==1536||image.naturalHeight!==2288){failedLoad();return;}loaded=true;sprite.style.backgroundImage=`url("${image.src}")`;host.hidden=dismissed;restore.hidden=!dismissed;restore.textContent='叫回科哞哞';restore.setAttribute('aria-label','叫回科哞哞');buildGuide();relayout();rest();if(!dismissed&&!motion.matches&&!paused&&mode==='auto')perform('waving','welcome');introTimer=setTimeout(()=>{if(scrollY<100){lastContextAt=Date.now();say(profile.intro,...profile.recommendation);}else checkGuide();},1400);};
+    image.onerror=()=>{if(!retried){retried=true;image.src=asset('spritesheet.png');}else failedLoad();};
+    image.src=asset('spritesheet.webp');
   }
   function resetGaze() {clearTimeout(gazeTimer);if(gaze<0)return;gaze=-1;renderCurrent();tick();}
   function gazeMove(event) {

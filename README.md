@@ -1,4 +1,4 @@
-﻿# 科哞哞——Codex 桌宠
+# 科哞哞——Codex 桌宠
 
 **科哞哞**（Ke Mou Mou）是一位穿着奶油白小牛连帽装、蓝色 USTC 上衣、背着地球挎包的卡通女孩，作为中国科学技术大学本科科研实践平台的互动形象而设计。本项目同时包含她的 **Codex 桌宠**实现——一个可以悬浮在网页上的动画小伙伴，陪伴你浏览、工作和学习。
 
@@ -93,7 +93,7 @@ Codex 桌宠版本的科哞哞支持以下动画状态：
 
 ## 项目结构
 
-`
+```
 kemoomoo-codex-pet/
 +-- README.md                        # 本文件
 +-- LICENSE                          # 所有权与使用声明
@@ -104,16 +104,19 @@ kemoomoo-codex-pet/
 |   +-- 概念图/                      # 三版概念图及创作记录
 |   +-- 主形象/                      # 最终选定的主形象
 |   +-- 动作延展/                    # 九种动作独立图
+|   +-- 网站演示/                    # 网页悬浮助手预览与动作轻动画
 |   +-- 03_科哞哞_九种场景展示.png   # 九宫格动作总览
 |   +-- 05_角色设计说明.txt
 |   +-- 06_AI使用及参考素材披露.txt
 |
 +-- sprites/                         # Codex 桌宠精灵图素材
-|   +-- final/                       # 最终精灵图
-|   +-- frames/                      # 按状态分组的独立帧
+|   +-- final/                       # 最终精灵图与结构校验报告
+|   +-- frames/                      # 九种动作状态的独立帧（视线跟随帧见 decoded/）
 |   +-- decoded/                     # 各状态原始生成图
 |   +-- references/                  # 参考图与布局引导
 |   +-- prompts/                     # 生成提示词
+|   +-- qa/                          # 质量检查与平台预检报告
+|   +-- 制作记录/                    # 抠图、拼接与校验脚本
 |   +-- 动画预览/                    # GIF/MP4 预览
 |   +-- pet_request.json             # 桌宠请求配置
 |   +-- 制作说明.md
@@ -127,7 +130,7 @@ kemoomoo-codex-pet/
         +-- scenes.json              # 场景配置
         +-- cutouts/                 # 场景抠图
         +-- scenes/                  # 场景图
-`
+```
 
 ---
 
@@ -136,7 +139,7 @@ kemoomoo-codex-pet/
 ### 方法一：集成到现有网站
 
 1. 将 `web/` 目录复制到你的网站资源目录：
-   `
+   ```
    your-site/
    +-- assets/
        +-- pet.js
@@ -147,30 +150,30 @@ kemoomoo-codex-pet/
            +-- scenes.json
            +-- cutouts/
            +-- scenes/
-   `
+   ```
 
 2. 在 HTML 页面的 `<head>` 中引入样式：
-   `html
+   ```html
    <link rel="stylesheet" href="assets/pet.css">
-   `
+   ```
 
 3. 在 `</body>` 前引入脚本：
-   `html
+   ```html
    <script src="assets/pet.js" defer></script>
-   `
+   ```
 
 4. 桌宠会自动初始化，显示在页面右下角。
 
 ### 方法二：本地预览
 
 使用本地服务器：
-`ash
+```bash
 # 使用 Python
 cd web && python -m http.server 8080
 
 # 使用 Node.js
 npx serve web
-`
+```
 
 ### 自定义
 

@@ -9,7 +9,7 @@ import json
 import statistics
 from PIL import Image
 
-ROOT = Path(r'C:\Users\jojo\Documents\Codex\2026-10-12\new-chat\outputs\科哞哞桌宠')
+ROOT = Path(__file__).resolve().parent.parent  # 科哞哞桌宠目录
 FRAMES = ROOT / 'frames'
 TARGET_HEIGHT = 152
 TARGET_BASELINE = 200

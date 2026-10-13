@@ -5,8 +5,8 @@ import subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = Path(r'C:\Users\jojo\Documents\Codex\2026-10-12\new-chat\outputs\科哞哞桌宠')
-SKILL = Path(r'C:\Users\jojo\.codex\plugins\cache\openai-curated-remote\work-pets\0.1.6\skills\create-pet\scripts')
+ROOT = Path(__file__).resolve().parent.parent  # 科哞哞桌宠目录
+SKILL = Path('~/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet/scripts').expanduser()
 sys.path.insert(0, str(SKILL))
 from render_animation_previews import ROW_DURATIONS, save_preview
 atlas_path = Path(sys.argv[1])
@@ -41,7 +41,11 @@ for k,(r,c) in enumerate([(1,0),(1,3),(5,2),(4,2)]):
     ImageDraw.Draw(stills).text((k*192+8,226),f'{names[r]} · 帧{c+1}',font=font,fill=(37,54,77,255))
 stills.save(out/'动作关键帧.png')
 subprocess.run([sys.executable,str(SKILL/'render_animation_previews.py'),'--frames-root',str(frames_root),'--output-dir',str(out/'单项动作')],check=True,capture_output=True)
-ffmpeg = next(Path(r'C:\Users\jojo\Documents\Codex\2026-10-12\new-chat\work\kemoomoo-deps\imageio_ffmpeg\binaries').glob('*.exe'))
+try:
+    import imageio_ffmpeg
+    ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+except ImportError:
+    ffmpeg = 'ffmpeg'
 subprocess.run([str(ffmpeg),'-y','-loglevel','error','-i',str(out/'全部动作.gif'),'-c:v','libx264','-pix_fmt','yuv420p','-movflags','+faststart',str(out/'全部动作.mp4')],check=True)
 (out/'preview-source.json').write_text(json.dumps({'atlas':str(atlas_path),'bytes':atlas_path.stat().st_size,'rendered_from_encoded_atlas':True},indent=2),encoding='utf-8')
 print('Rendered previews from '+str(atlas_path))
